@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de Números</h1>
+<a href="/numeros/nuevo/" class="btn btn-primary mb-3">Nuevo Número</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Número</th>
+            <th>Es Spam</th>
+            <th>Reportes</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for numero in numeros %}
+        <tr>
+            <td>{{ numero.id }}</td>
+            <td>{{ numero.numero }}</td>
+            <td>{{ numero.es_spam }}</td>
+            <td>{{ numero.reportes }}</td>
+            <td>
+                <a href="/numeros/{{ numero.id }}/editar/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/numeros/{{ numero.id }}/eliminar/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

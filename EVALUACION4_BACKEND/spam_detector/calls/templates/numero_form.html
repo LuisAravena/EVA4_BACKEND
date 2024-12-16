@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% if numero %}Editar Número{% else %}Nuevo Número{% endif %}</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="numero" class="form-label">Número</label>
+        <input type="text" name="numero" id="numero" class="form-control" value="{{ form.numero.value }}">
+    </div>
+    <div class="mb-3">
+        <label for="es_spam" class="form-label">¿Es Spam?</label>
+        <select name="es_spam" id="es_spam" class="form-control">
+            <option value="true" {% if form.es_spam.value == 'true' %}selected{% endif %}>Sí</option>
+            <option value="false" {% if form.es_spam.value == 'false' %}selected{% endif %}>No</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+{% endblock %}
